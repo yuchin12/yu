@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>購物車</title>
+    <style>
+        body {
+            background-image: url(''https://tluxe-aws.hmgcdn.com/public/article/2017/atl_20210413105925_139.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+			background-attachment: fixed;
+            filter: blur(5px) brightness(0.5);
+        }
+		.content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+		}
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .cart {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .checkout-form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+<caption><h1>商品列表</h1></caption>
+<tr>
+<th>品項</th>
+<th>圖片</th>
+<th>價格</th>
+<th>加入購物車</th>
+</tr>
+<tr>
+<div class="product">
+<td>巧克力慕斯</td>
+<td><img src="images/巧克力慕斯.png" width="200" height="200" /></td>
+<td>$80</td>
+<td><button onclick="addToCart('巧克力慕斯', 80)">加入購物車</button></td>
+ </div>
+</tr>
+
+<tr>
+<div class="product">
+<td>巧克力戚風蛋糕</td>
+<td><img src="images/巧克力戚風蛋糕.jpg"width="200" height="200"/></td>
+<td>$75</td>
+<td><button onclick="addToCart('巧克力戚風蛋糕', 75)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>輕乳酪蛋糕</td>
+<td><img src="images/輕乳酪蛋糕.jpg"width="200" height="200"/></td>
+<td>$100</td>
+<td><button onclick="addToCart('輕乳酪蛋糕', 100)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>蜂蜜蛋糕</td>
+<td><img src="images/蜂蜜蛋糕.jpg"width="200" height="200"/></td>
+<td>$75</td>
+<td><button onclick="addToCart('蜂蜜蛋糕', 75)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>千層蛋糕</td>
+<td><img src="images/千層蛋糕.jpg"width="200" height="200"/></td>
+<td>$80</td>
+<td><button onclick="addToCart('千層蛋糕', 80)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>巧克力布朗尼</td>
+<td><img src="images/巧克力布朗尼.jpg"width="200" height="200"/></td>
+<td>$90</td>
+<td><button onclick="addToCart('巧克力布朗尼', 90)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>巧克力曲奇</td>
+<td><img src="images/巧克力曲奇.jpg"width="200" height="200"/></td>
+<td>$90</td>
+<td><button onclick="addToCart('巧克力布朗尼', 90)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>雪花酥</td>
+<td><img src="images/雪花酥.jpg"width="200" height="200"/></td>
+<td>$80</td>
+<td><button onclick="addToCart('雪花酥', 80)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>美式軟餅乾</td>
+<td><img src="images/美式軟餅乾.jpg"width="200" height="200"/></td>
+<td>$80</td>
+<td><button onclick="addToCart('美式軟餅乾', 80)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>馬卡龍</td>
+<td><img src="images/馬卡龍.jpg"width="200" height="200"/></td>
+<td>$90</td>
+<td><button onclick="addToCart('馬卡龍', 90)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>泡芙</td>
+<td><img src="images/泡芙.jpg"width="200" height="200"/></td>
+<td>$90</td>
+<td><button onclick="addToCart('泡芙', 90)">加入購物車</button></td>
+ </div>
+</tr>
+<tr>
+<div class="product">
+<td>蝴蝶酥</td>
+<td><img src="images/蝴蝶酥.jpg"width="200" height="200"/></td>
+<td>$70</td>
+<td><button onclick="addToCart('蝴蝶酥', 70)">加入購物車</button></td>
+ </div>
+</tr>
+
+	
+	
+
+    
+    <div class="cart">
+        <table id="cartTable">
+		<h1>購物車</h1>
+            <thead>
+                <tr>
+                    <th>商品</th>
+                    <th>價格</th>
+                    <th>數量</th>
+                    <th>總計</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align:right;">總計:</td>
+                    <td id="totalPrice">$0</td>
+                </tr>
+            </tfoot>
+        </table>
+        <button onclick="showCheckoutForm()">結帳</button>
+    </div>
+    <div id="checkoutForm" class="checkout-form" style="display: none;">
+	<form action="mailto:s1111244@mail.yzu.edu.tw" method="post" enctype="text/plain">
+        <h2>結帳資訊</h2>
+        <label for="name">姓名:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="address">地址:</label>
+        <input type="text" id="address" name="address" required><br><br>
+        <label for="phone">電話:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+        <label for="email">電子郵件:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <button onclick="sendOrder()">送出訂單</button>
+    </div>
+    <script>
+        let cart = [];
+        let totalPrice = 0;
+function addToCart(name, price) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateQuantity(index, newQuantity) {
+            cart[index].quantity = newQuantity;
+            updateCart();
+        }
+
+        function updateCart() {
+            const tableBody = document.querySelector("#cartTable tbody");
+            tableBody.innerHTML = "";
+            totalPrice = 0;
+            cart.forEach((item, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>$${item.price}</td>
+                    <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
+                    <td>$${item.price * item.quantity}</td>
+                    <td><button onclick="removeFromCart(${index})">移除</button></td>
+                `;
+                tableBody.appendChild(row);
+                totalPrice += item.price * item.quantity;
+            });
+            document.querySelector("#totalPrice").textContent = `$${totalPrice}`;
+        }
+        // addToCart, removeFromCart, updateQuantity 和 updateCart 函數與之前相同
+
+        function showCheckoutForm() {
+            document.getElementById("checkoutForm").style.display = "block";
+        }
+
+        function sendOrder() {
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+			
+
+            // 在這裡可以添加發送訂單的邏輯,例如使用AJAX發送到服務器
+            alert(`訂單已送出!姓名:${name},地址:${address},電話:${phone},電子郵件:${email},總金額:$${totalPrice}`);
+
+            // 清空購物車
+            cart = [];
+            updateCart();
+
+            // 隱藏結帳表單
+            document.getElementById("checkoutForm").style.display = "none";
+        }
+    </script>
+</body>
+</html>
